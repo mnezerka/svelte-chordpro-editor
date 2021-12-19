@@ -1,25 +1,40 @@
 <script>
+	import Navbar from "./Navbar.svelte"
 	import ChrodProPreview from "./ChordProPreview.svelte"
+
+    export let song = "";
+
+    let source = song;
 </script>
 
+<Navbar />
 <main>
-	<ChrodProPreview />
+    <div class="editor">
+        <textarea bind:value={source} class="no-print" />
+    </div>
+
+    <div class="preview">
+        <ChrodProPreview {source} />
+    </div>
 </main>
 
 <style>
-	main {
-		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
-	}
+    main {
+        display: flex;
+        flex-direction: row;
+        height: 100%;
+    }
 
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
-	}
+    .editor, .preview {
+        flex-grow: 1;
+        flex-basis: 0;
+        padding: 5px;
+    }
+
+    textarea {
+        width: 100%;
+        height: 100%;
+    }
 
 	@media (min-width: 640px) {
 		main {

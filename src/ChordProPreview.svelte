@@ -1,59 +1,78 @@
 <script>
-    //import ChordSheetJS from 'chordsheetjs';
-    //const ChordSheetJS = require('chordsheetjs');
-    //var ChordSheetJS = require('chordsheetjs').default;
+    import jschordpro from 'js-chordpro';
 
-    //console.log(ChordSheetJS);
-    import ChordPro from 'js-chordpro';
-    //import {FormatterAscii} from 'js-chordpro/dist/FormatterAscii';
-
-    //console.log(FormatterAscii);
-
-    console.log(ChordPro);
-
-    //console.log(ChordSheetJS);
-    
-    //var {FormatterAscii} = require('js-chordpro/dist/FormatterAscii');
-
-    let source = `
-{title: Song title}
-
-[C]Hello, this is first verse
-    `;
+    export let source = "";
+    let err = null;
 
     function to_html(song_chordpro) {
-        console.log("here", song_chordpro);
 
-        // tokenize and parse song into in-memory song document structure
-        const song_tokens = ChordPro.Tokenizer.tokenize(song_chordpro)
-        console.log("tokens:", song_tokens);
+        let result = ""
+        try {
+            let doc = jschordpro.parse(song_chordpro + "\n")
+            result = jschordpro.to_html(doc);
+            err = null;
+        } catch (e) {
+            err = e.toString();
+        }
 
-        const song_doc = ChordPro.Parser.parse(song_tokens)
-        console.log("doc:", song_doc);
 
-        // create instance of ascii formatter
-        //var formatterAscii = new ChordPro.FormatterAscii();
-
-        // write ascii representation to console
-        //const song_ascii = ChordPro.FormatterAscii.processSong(song_tokens);
-        const song_html = ChordPro.FormatterHtml.processSong(song_doc);
-        return song_html;
+        return result;
     }
 
 </script>
 
 <div class="preview">
-
-    <textarea bind:value={source} class="no-print" />
-
+    {#if err !== null}
+        <div class="error">
+            {err}
+        </div>
+    {/if}
     {@html to_html(source)}
-
 </div>
 
 <style>
 
-    textarea {
-        width: 90%;
-        height: 200px;
+    :global(.jschordpro-song h1) {
+        font-size: 24px;
+    }
+
+    :global(.jschordpro-song h2) {
+        font-size: 18px;
+    }
+
+    .error {
+        color: #ff0000;
+        unicode-bidi: embed;
+        font-family: monospace;
+        white-space: pre;
+    }
+
+    :global(.jschordpro-song) {
+        width: 100%;
+    }
+
+    :global(.jschordpro-song table) {
+        border-collapse: collapse;
+    }
+
+
+    :global(.jschordpro-song td) {
+        text-align: left;
+        font-size: 14px;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    :global(.jschordpro-song .jschordpro-chorus, .jschordpro-song .jschordpro-verse) {
+        margin-bottom: 20px;
+    }
+
+
+    :global(.jschordpro-song .jschordpro-chorus) {
+        margin-left: 20px;
+    }
+
+    :global(.jschordpro-song .jschordpro-chord) {
+        font-weight: bold;
     }
 </style>

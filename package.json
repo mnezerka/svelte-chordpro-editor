@@ -1,6 +1,6 @@
 {
-  "name": "svelte-app",
-  "version": "1.0.0",
+  "name": "svelte-chrodpro-editor",
+  "version": "2.0.0",
   "private": true,
   "scripts": {
     "build": "rollup -c",
@@ -10,7 +10,6 @@
   "devDependencies": {
     "@rollup/plugin-commonjs": "^17.0.0",
     "@rollup/plugin-node-resolve": "^11.0.0",
-    "@types/chordsheetjs": "^2.8.0",
     "rollup": "^2.3.4",
     "rollup-plugin-css-only": "^3.1.0",
     "rollup-plugin-livereload": "^2.0.0",
@@ -19,8 +18,7 @@
     "svelte": "^3.0.0"
   },
   "dependencies": {
-    "chordsheetjs": "^5.1.2",
-    "js-chordpro": "^1.0.2",
+    "js-chordpro": "^2.0.0",
     "sirv-cli": "^1.0.0"
   }
 }
