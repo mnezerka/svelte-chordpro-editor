@@ -1,7 +1,7 @@
 import App from './App.svelte';
 
 const song = `{title: In My Time of Dyin'}
-{subtitle: Bob Dyaln}
+{subtitle: Bob Dylan}
 
 [Am]In my time of dying
 [Am]I don't want nobody to mourn
