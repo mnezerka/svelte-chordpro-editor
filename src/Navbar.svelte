@@ -1,4 +1,4 @@
-<nav>
+<nav class="no-print">
     <div class="title">ChordPro Editor</div>
 </nav>
 
@@ -11,8 +11,8 @@
 	nav .title {
 		color: #ffffff;
 		text-transform: uppercase;
-		font-size: 16px;
-		font-weight: 100;
+		font-size: 20px;
+		font-weight: 150;
 	}
 
 </style>
