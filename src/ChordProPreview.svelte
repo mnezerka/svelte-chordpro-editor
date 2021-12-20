@@ -1,14 +1,17 @@
 <script>
     import jschordpro from 'js-chordpro';
+    import Tree from './ChordProPrevewTree.svelte'
 
     export let source = "";
+
     let err = null;
+    let show_tree = false;
+    let doc = null;
 
     function to_html(song_chordpro) {
-
         let result = ""
         try {
-            let doc = jschordpro.parse(song_chordpro + "\n")
+            doc = jschordpro.parse(song_chordpro + "\n")
             result = jschordpro.to_html(doc);
             err = null;
         } catch (e) {
@@ -22,15 +25,36 @@
 </script>
 
 <div class="preview">
+    <div class="toolbar no-print">
+        <button on:click={() => show_tree = !show_tree}>Tree</button>
+    </div>
     {#if err !== null}
         <div class="error">
             {err}
         </div>
     {/if}
+    
     {@html to_html(source)}
+
+    {#if show_tree && doc !== null}
+        <div class="no-print tree">
+            <Tree root={doc} />
+        </div>
+    {/if}
 </div>
 
 <style>
+
+    .tree {
+        border-top: 1px solid #c0c0c0;
+        padding-top: 10px;
+    }
+
+    .toolbar button {
+        height: auto;
+        padding: 4px;
+        margin: 0;
+    }
 
     :global(.jschordpro-song h1) {
         font-size: 24px;
