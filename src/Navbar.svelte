@@ -1,14 +1,24 @@
 <script>
     import Menu from "./Menu.svelte"
 
-    export let on_open = () => {};
+    export let subtitle = "";
     export let on_new = () => {};
+    export let on_open = () => {};
+    export let on_save = () => {};
 
 </script>
 <nav class="no-print">
-    <div class="title">ChordPro Editor</div>
+    <div class="title">
+        ChordPro Editor
+        {#if subtitle.length > 0}
+        - {subtitle}
+        {/if}
+    </div>
     <Menu
-        {on_open} {on_new}/>
+        {on_new}
+        {on_open}
+        {on_save}
+     />
 </nav>
 
 <style>

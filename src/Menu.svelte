@@ -1,6 +1,7 @@
 <script>
-    export let on_open = () => {};
     export let on_new = () => {};
+    export let on_open = () => {};
+    export let on_save = () => {};
 
     let file_hidden = true;
 
@@ -12,8 +13,7 @@
         <div class="menu-item-container" class:hidden={file_hidden}>
             <button on:click={() => {file_hidden = true; on_new()}} >New</button>
             <button on:click={() => {file_hidden = true; on_open()}} >Open..</button>
-            <button>Save</button>
-            <button>Save as...</button>
+            <button on:click={() => {file_hidden = true; on_save()}} >Save</button>
         </div>
     </div>
 </nav>

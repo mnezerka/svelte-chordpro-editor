@@ -1,10 +1,13 @@
 <script>
     import Navbar from "./Navbar.svelte"
     import ChrodProPreview from "./ChordProPreview.svelte"
+    import {get_file_handle, read_file, write_file} from "./utils.js"
 
     export let song = "";
 
     let file_input;
+
+    let file_handle;
 
     // this is chordpro source rendered in editor
     let source_editor = song;
@@ -51,15 +54,42 @@
         source_preview = ""
     }
 
-    function on_open() {
-        console.log("open file")
-        file_input.click();
+    async function on_open() {
+        file_handle = await get_file_handle()
+
+        console.log(file_handle);
+
+        try {
+            let file = await file_handle.getFile()
+            source_editor = await read_file(file)
+
+        } catch(reason) {
+            console.error("read failed: ", reason)
+        }
+    }
+
+    async function on_save() {
+        if (!file_handle) {
+            // TODO return await app.saveFileAs();
+            return
+        }
+        try {
+            await write_file(file_handle, source_editor);
+        } catch (ex) {
+            const msg = 'Unable to save file';
+            console.error(msg, ex);
+            alert(msg);
+        }
     }
 
 </script>
 
 <Navbar
-    {on_open} {on_new} />
+    subtitle={file_handle && file_handle.name}
+    {on_open}
+    {on_new}
+    {on_save}
+ />
 
 <main>
     <div class="editor no-print">
