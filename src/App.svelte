@@ -4,6 +4,8 @@
 
     export let song = "";
 
+    let file_input;
+
     // this is chordpro source rendered in editor
     let source_editor = song;
 
@@ -34,11 +36,21 @@
     // this is a way how to react on change of `source_editor`
     $: debounced_update_source(source_editor)
 
+    function on_file_selected(e) {
+        let f = e.target.files[0];
+        let reader = new FileReader();
+        reader.readAsText(f);
+        reader.onload = e => {
+            source_editor = e.target.result
+        };
+}
 </script>
 
 <Navbar />
 <main>
     <div class="editor no-print">
+        <button on:click={()=>{file_input.click();}}>Open file</button>
+        <input style="display:none" type="file" accept=".txt" on:change={(e)=>on_file_selected(e)} bind:this={file_input} >
         <textarea bind:value={source_editor} class="no-print" />
     </div>
 
