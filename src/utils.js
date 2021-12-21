@@ -1,3 +1,28 @@
+
+ // Create a handle to a new (text) file on the local file system.
+export function get_new_file_handle() {
+    // For Chrome 86 and later...
+    if ('showSaveFilePicker' in window) {
+        const opts = {
+            types: [{
+                description: 'Chordpro text file',
+                accept: {'text/plain': ['.txt']},
+            }],
+        };
+        return window.showSaveFilePicker(opts);
+    }
+    // For Chrome 85 and earlier...
+    const opts = {
+        type: 'save-file',
+        accepts: [{
+            description: 'Text file',
+            extensions: ['txt'],
+            mimeTypes: ['text/plain'],
+        }],
+    };
+    return window.chooseFileSystemEntries(opts);
+}
+
  // Open a handle to an existing file on the local file system.
 export function get_file_handle() {
 

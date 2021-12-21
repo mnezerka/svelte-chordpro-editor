@@ -3,9 +3,9 @@
     import Tree from './ChordProPrevewTree.svelte'
 
     export let source = "";
+    export let show_tree = false;
 
     let err = null;
-    let show_tree = false;
     let doc = null;
 
     function to_html(song_chordpro) {
@@ -25,9 +25,6 @@
 </script>
 
 <div class="preview">
-    <div class="toolbar no-print">
-        <button on:click={() => show_tree = !show_tree}>Tree</button>
-    </div>
     {#if err !== null}
         <div class="error">
             {err}
@@ -50,18 +47,18 @@
         padding-top: 10px;
     }
 
-    .toolbar button {
-        height: auto;
-        padding: 4px;
-        margin: 0;
-    }
-
     :global(.jschordpro-song h1) {
         font-size: 24px;
+        margin-top: 0px;
+        font-weight: normal;
+        margin-bottom: 10px;
     }
 
     :global(.jschordpro-song h2) {
         font-size: 18px;
+        font-weight: normal;
+        margin-top: 0;
+        margin-bottom: 10px;
     }
 
     .error {
@@ -83,8 +80,7 @@
     :global(.jschordpro-song td) {
         text-align: left;
         font-size: 14px;
-        padding-left: 0px;
-        padding-right: 0px;
+        padding: 0;
     }
 
     :global(.jschordpro-song .jschordpro-chorus, .jschordpro-song .jschordpro-verse) {
@@ -93,10 +89,11 @@
 
 
     :global(.jschordpro-song .jschordpro-chorus) {
-        margin-left: 20px;
+        margin-left: 30px;
     }
 
     :global(.jschordpro-song .jschordpro-chord) {
         font-weight: bold;
+        padding-top: 3px;
     }
 </style>

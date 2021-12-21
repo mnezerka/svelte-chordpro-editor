@@ -66,8 +66,9 @@
         padding-inline-start: 20px;
         margin-block-start: 0;
         margin-block-end: 0;
-        list-style-type: none;
+        /*list-style-type: none;*/
     }
+
     .expanded {
         color: black;
     }

@@ -5,6 +5,8 @@
     export let on_new = () => {};
     export let on_open = () => {};
     export let on_save = () => {};
+    export let on_save_as = () => {};
+    export let on_tree = () => {};
 
 </script>
 <nav class="no-print">
@@ -18,6 +20,8 @@
         {on_new}
         {on_open}
         {on_save}
+        {on_save_as}
+        {on_tree}
      />
 </nav>
 
