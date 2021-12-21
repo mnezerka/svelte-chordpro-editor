@@ -128,7 +128,7 @@
     </div>
 </main>
 
-<footer>
+<footer class="no-print">
     Copyright 2021
 </footer>
 
