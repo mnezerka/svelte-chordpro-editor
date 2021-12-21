@@ -42,15 +42,12 @@
     $: debounced_update_source(source_editor)
 
     function on_new() {
-        console.log("new file")
         source_editor = ""
         source_preview = ""
     }
 
     async function on_open() {
         file_handle = await get_file_handle()
-
-        console.log(file_handle);
 
         try {
             let file = await file_handle.getFile()

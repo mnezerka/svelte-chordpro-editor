@@ -60,17 +60,13 @@ export function get_file_handle() {
  // Reads the raw text from a file handle.
  export function read_file(file) {
     // If the new .text() reader is available, use it.
-    console.log("read_file", file);
     if (file.text) {
-        console.log("returining text()");
-
         return file.text();
     } else {
         // Otherwise use the traditional file reading technique.
         let p = new Promise((resolve) => {
             const reader = new FileReader();
             reader.addEventListener("loadend", function() {
-                console.log("loaded");
                 // reader.result contains the contents of blob as a typed array
                 // we insert content of file in DOM here
                 resolve(reader.result);
@@ -82,11 +78,9 @@ export function get_file_handle() {
                 resolve(text)
             };
             */
-            console.log("before readAsText", file);
             reader.readAsText(file);
         });
 
-        console.log("returining promise", p);
         return(p)
     }
 }

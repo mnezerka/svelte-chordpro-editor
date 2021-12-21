@@ -47,6 +47,11 @@
         padding-top: 10px;
     }
 
+    :global(.jschordpro-header) {
+        margin-bottom: 15px;
+    }
+
+
     :global(.jschordpro-song h1) {
         font-size: 24px;
         margin-top: 0px;
@@ -95,5 +100,6 @@
     :global(.jschordpro-song .jschordpro-chord) {
         font-weight: bold;
         padding-top: 3px;
+        padding-right: 5px; 
     }
 </style>
