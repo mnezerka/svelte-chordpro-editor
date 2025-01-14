@@ -47,10 +47,9 @@
         padding-top: 10px;
     }
 
-    :global(.jschordpro-header) {
+    :global(.jschordpro-song .header) {
         margin-bottom: 15px;
     }
-
 
     :global(.jschordpro-song h1) {
         font-size: 24px;
@@ -88,16 +87,16 @@
         padding: 0;
     }
 
-    :global(.jschordpro-song .jschordpro-chorus, .jschordpro-song .jschordpro-verse) {
+    :global(.jschordpro-song .chorus, .jschordpro-song .verse) {
         margin-bottom: 20px;
     }
 
 
-    :global(.jschordpro-song .jschordpro-chorus) {
+    :global(.jschordpro-song .chorus) {
         margin-left: 30px;
     }
 
-    :global(.jschordpro-song .jschordpro-chord) {
+    :global(.jschordpro-song .chord) {
         font-weight: bold;
         padding-top: 3px;
         padding-right: 5px; 
