@@ -47,7 +47,7 @@
 </script>
 
 {#if root}
-    <div class="label" on:click={() => {if (children.length === 0) { expanded = true } else { expanded = !expanded}}} class:expanded class:collapsed={!expanded}>{text}</div>
+    <div class="label" role="button" on:click={() => {if (children.length === 0) { expanded = true } else { expanded = !expanded}}} class:expanded class:collapsed={!expanded}>{text}</div>
     <ul>
         {#if children.length > 0 && expanded}
             {#each children as root}

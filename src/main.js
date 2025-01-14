@@ -1,3 +1,4 @@
+import { mount } from 'svelte'
 import App from './App.svelte';
 
 const song = `{title: In My Time of Dyin'}
@@ -26,7 +27,7 @@ All I want you to do
 Is take me when I die
 `
 
-const app = new App({
+const app = mount(App, {
 	target: document.body,
     props: {
         song

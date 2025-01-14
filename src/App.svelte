@@ -117,7 +117,7 @@
 
 <main>
     <div class="editor no-print">
-        <textarea bind:value={source_editor} class="no-print" />
+        <textarea bind:value={source_editor} class="no-print"></textarea>
     </div>
 
     <div class="preview">
@@ -126,7 +126,7 @@
 </main>
 
 <footer class="no-print">
-    Copyright 2021
+    Copyright 2024
 </footer>
 
 <style>
