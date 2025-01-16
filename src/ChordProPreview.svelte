@@ -1,51 +1,88 @@
 <script>
     import jschordpro from 'js-chordpro';
-    import Tree from './ChordProPrevewTree.svelte'
 
-    export let source = "";
-    export let show_tree = false;
+    let { source = ''} = $props()
+
+    console.log('source', source)
+
+    let transposeStep = $state(0);
 
     let err = null;
     let doc = null;
 
-    function to_html(song_chordpro) {
-        let result = ""
-        try {
-            doc = jschordpro.parse(song_chordpro + "\n")
-            result = jschordpro.to_html(doc);
-            err = null;
-        } catch (e) {
-            err = e.toString();
+    let steps = $state([
+        {id: -6, text: '-6'},
+        {id: -5, text: '-5'},
+        {id: -4, text: '-4'},
+        {id: -3, text: '-3'},
+        {id: -2, text: '-2'},
+        {id: -1, text: '-1'},
+        {id: 0, text: 'no transposition'},
+        {id: 1, text: '+1'},
+        {id: 2, text: '+2'},
+        {id: 3, text: '+3'},
+        {id: 4, text: '+4'},
+        {id: 5, text: '+5'},
+        {id: 6, text: '+6'}
+    ]);
+
+    //function to_html(song_chordpro) {
+
+    let result = ""
+
+    try {
+        doc = jschordpro.parse(source)
+
+        if (transposeStep != 0) {
+            jschordpro.transpose(doc, transposeStep)
         }
 
-
-        return result;
+        result = jschordpro.to_html(doc);
+        console.log(result)
+        err = null;
+    } catch (e) {
+        err = e.toString();
+        console.log(err)
     }
+
 
 </script>
 
 <div class="preview">
+
+    <div class="transpose">
+        <form onsubmit={(e) => e.preventDefault()}>
+            <select bind:value={transposeStep} >
+            {#each steps as step}
+            <option value={step.id}>{step.text}</option>
+            {/each}
+
+            </select>
+        </form>
+    </div>
+
     {#if err !== null}
         <div class="error">
             {err}
         </div>
     {/if}
 
-    {@html to_html(source)}
+    {@html result}
 
-    {#if show_tree && doc !== null}
-        <div class="no-print tree">
-            <Tree root={doc} />
-        </div>
-    {/if}
 </div>
 
 <style>
 
-    .tree {
-        border-top: 1px solid #c0c0c0;
-        padding-top: 10px;
+    .preview {
+        position: relative;
     }
+
+    .transpose {
+        position: absolute;
+        top: 4px;
+        right: 4px;
+    }
+
 
     :global(.jschordpro-song .header) {
         margin-bottom: 15px;

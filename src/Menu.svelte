@@ -3,10 +3,8 @@
     export let on_open = () => {};
     export let on_save = () => {};
     export let on_save_as = () => {};
-    export let on_tree = () => {};
 
     let file_hidden = true;
-    let view_hidden = true;
 
     let top_item_id = null;
 
@@ -37,13 +35,6 @@
             <button on:click={() => {on_item_click(on_save_as)}} >Save as..</button>
         </div>
     </div>
-    <div class="menu-container">
-        <button class="menu-top" on:click={() => { on_top_item_click("view");}}>View</button>
-        <div class="menu-item-container" class:hidden={top_item_id !== "view"}>
-            <button on:click={() => {on_item_click(on_tree)}} >Tree</button>
-        </div>
-    </div>
-
 </nav>
 
 <style>
@@ -66,7 +57,7 @@
         cursor: pointer;
         font-size: 14px;
         text-align: left;
-        padding-left: 16px;
+        padding-left: 8px;
         padding-top: 4px; 
         padding-bottom: 4px; 
         padding-right: 4px;

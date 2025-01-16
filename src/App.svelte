@@ -1,13 +1,11 @@
 <script>
     import Navbar from "./Navbar.svelte"
-    import ChrodProPreview from "./ChordProPreview.svelte"
+    import ChordProPreview from "./ChordProPreview.svelte"
     import {get_file_handle, get_new_file_handle, read_file, write_file} from "./utils.js"
 
-    export let song = "";
+    let { song = ''} = $props();
 
     const has_fs_access = 'chooseFileSystemEntries' in window || 'showOpenFilePicker' in window;
-
-    let show_tree = false;
 
     let file_handle;
 
@@ -17,8 +15,8 @@
     // this is chordpro source passed to preview, the reason
     // for this duplicate of source is debouncing - delayed
     // preview (not to redraw preview immediately after each change)
-    let source_preview = "";
- 
+    let source_preview = $state("");
+
     // delay function execution to avoid too many updates
     //  during e.g. resizing window by mouse
     function debounce(func, delay) {
@@ -35,6 +33,7 @@
 
     // method to be called on each change of chordpro source in editor
     function update_source(new_source) {
+        console.log('update-source called')
         source_preview = new_source;
     }
 
@@ -100,10 +99,6 @@
         }
     }
 
-    function on_tree() {
-        show_tree = !show_tree;
-    }
-
 </script>
 
 <Navbar
@@ -112,7 +107,6 @@
     {on_new}
     {on_save}
     {on_save_as}
-    {on_tree}
  />
 
 <main>
@@ -121,12 +115,12 @@
     </div>
 
     <div class="preview">
-        <ChrodProPreview source={source_preview} {show_tree} />
+        <ChordProPreview source={source_preview} />
     </div>
 </main>
 
 <footer class="no-print">
-    Copyright 2024
+    BlueSoft &copy; {new Date().getFullYear()}
 </footer>
 
 <style>
@@ -149,11 +143,11 @@
     }
 
     footer {
-        background-color: #383e52;
+        background-color: #eee;
         text-align: center;
-        color: #ddd;
-		text-transform: lowercase;
-		font-weight: 150;
+        color: #aaa;
+        text-transform: lowercase;
+        font-weight: 150;
         font-size: 13px;
         padding: 16px;
     }
