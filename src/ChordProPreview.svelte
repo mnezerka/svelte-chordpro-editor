@@ -51,9 +51,9 @@
 
 <div class="preview">
 
-    <div class="transpose">
-        <form onsubmit={(e) => e.preventDefault()}>
-            <select bind:value={s.transposeStep} >
+    <div class="transpose no-print">
+        <form class="no-print" onsubmit={(e) => e.preventDefault()}>
+            <select bind:value={s.transposeStep} class="no-print">
             {#each steps as step}
             <option value={step.id}>{step.text}</option>
             {/each}
@@ -83,6 +83,9 @@
         right: 4px;
     }
 
+    select {
+        padding: 2px;
+    }
 
     :global(.jschordpro-song .header) {
         margin-bottom: 15px;
