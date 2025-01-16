@@ -6,37 +6,41 @@
     export let on_open = () => {};
     export let on_save = () => {};
     export let on_save_as = () => {};
-    export let on_tree = () => {};
 
 </script>
 <nav class="no-print">
     <div class="title">
-        ChordPro Editor
+        <span class="main">ChordPro Editor</span>
+
         {#if subtitle.length > 0}
-        - {subtitle}
+        <span class="sub">- {subtitle}</span>
         {/if}
     </div>
+
     <Menu
         {on_new}
         {on_open}
         {on_save}
         {on_save_as}
-        {on_tree}
      />
 </nav>
 
 <style>
     nav {
-        background-color: #383e52;
+        background-color: #3399ff;
+        border-bottom: 1px solid #ccc;
     }
 
-	nav .title {
-		color: #ffffff;
-		text-transform: uppercase;
-		font-size: 20px;
-		font-weight: 150;
-        padding: 16px;
-	}
+    .title {
+        color: #ffffff;
+        font-size: 20px;
+        padding: 8px;
+        font-family: Oswald;
+    }
+
+    .main {
+        text-transform: uppercase;
+    }
 
 </style>
 

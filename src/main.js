@@ -28,7 +28,7 @@ Is take me when I die
 `
 
 const app = mount(App, {
-	target: document.body,
+    target: document.body,
     props: {
         song
     }
