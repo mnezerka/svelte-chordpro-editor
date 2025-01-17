@@ -9,22 +9,12 @@
 
     let file_handle;
 
+    //var timer;
+
     // this is chordpro source rendered in editor
     let source_editor = $state(song);
+    let source_preview = $state(song);
 
-    /*
-    async function delayedData(time, data) {
-        return new Promise((resolve) => {
-            console.log('starting timer');
-            setTimeout(() => {
-                console.log("run after:", time);
-                resolve(data); 
-            }, time);
-        })
-    }
-
-    let xyz = $derived(delayedData(300, source_editor))
-    */
 
     function on_new() {
         source_editor = ""
@@ -84,13 +74,22 @@
         }
     }
 
-    /* following could work for delayed data - to be implemented later
-        {#await xyz}
-        <div>awaiting</div>
-        {:then source_preview}
-        <ChordProPreview source={source_preview} />
-        {/await}
-    */
+    var timer
+
+    function delayedData(time, data, fn) {
+
+        if (timer) {
+            clearTimeout(timer)
+        }
+
+        timer = setTimeout(() => {
+            fn(data)
+        }, time);
+    }
+
+    $effect(() => {
+        delayedData(1000, source_editor, (data) => {source_preview = data})
+    })
 
 </script>
 
@@ -111,7 +110,7 @@
     </div>
 
     <div class="preview">
-        <ChordProPreview source={source_editor} />
+        <ChordProPreview source={source_preview} />
     </div>
 </main>
 
