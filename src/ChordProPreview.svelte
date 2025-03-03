@@ -136,6 +136,10 @@
         margin-left: 30px;
     }
 
+    :global(.jschordpro-song .line-chords) {
+        height: 1em;
+    }
+
     :global(.jschordpro-song .chord) {
         font-weight: bold;
         padding-top: 3px;
