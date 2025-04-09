@@ -111,6 +111,14 @@
             </div>
         </div>
 
+        <div class="dropdown">
+            <button class="menu-top" on:click={() => { on_top_item_click("help");}}>Help</button>
+            <div class="menu-item-container" class:hidden={top_item_id !== 'help'}>
+                <a href="https://www.chordpro.org/chordpro/">ChordPro Format</a>
+            </div>
+        </div>
+
+
     </div>
 </nav>
 
@@ -140,11 +148,23 @@
         font-size: 14px;
         text-align: left;
         padding-left: 8px;
-        padding-top: 4px; 
-        padding-bottom: 4px; 
+        padding-top: 4px;
+        padding-bottom: 4px;
         padding-right: 4px;
     }
 
+    .menu-container .menu-item-container a {
+        border: 0;
+        display: block;
+        width: 100%;
+        color: black;
+        cursor: pointer;
+        font-size: 14px;
+        padding-left: 8px;
+        padding-top: 4px;
+        padding-bottom: 4px;
+        padding-right: 4px;
+    }
     .menu-item-container {
         background-color: #fff;
         box-shadow: 0 8px 16px 0 rgb(0 0 0 / 20%);
@@ -154,16 +174,16 @@
     }
 
     .menu-container .menu-item-container button {
-        /*background-color: var(--app-menu-bg);*/
         background-color: inherit;
         color: #000;
         display: block;
         text-align: left;
         width: 100%;
     }
-    .menu-container .menu-item-container button:hover {
+
+    .menu-container .menu-item-container button:hover,
+    .menu-container .menu-item-container a:hover {
         background-color: #eee;
     }
-
 
 </style>
