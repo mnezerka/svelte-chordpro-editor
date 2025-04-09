@@ -68,7 +68,7 @@
     :global(.jschordpro-song h1) {
         font-size: 24px;
         margin-top: 0px;
-        font-weight: normal;
+        font-weight: bold;
         margin-bottom: 10px;
         text-align: --title-align;
     }
