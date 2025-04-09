@@ -1,7 +1,7 @@
 <script>
     import Navbar from "./Navbar.svelte"
     import ChordProPreview from "./ChordProPreview.svelte"
-    import {get_file_handle, get_new_file_handle, read_file, write_file} from "./utils.js"
+    import {get_file_handle, get_new_file_handle, read_file, write_file, normalize_line_endings} from "./utils.js"
     import {new_song} from "./templates.js"
 
     let { song = ''} = $props();
@@ -30,8 +30,8 @@
 
         try {
             let file = await file_handle.getFile()
-            source_editor = await read_file(file)
-
+            let file_content = await read_file(file)
+            source_editor = normalize_line_endings(file_content);
         } catch(reason) {
             console.error("read failed: ", reason)
         }

@@ -113,3 +113,12 @@ export function write_file(file_handle, contents) {
         });
     }
   }
+
+// converts all line enddins to unix
+// \r\n matches windows-style line endings.
+// \r matches old mac-style line endings.
+// \n matched unix and new mac-style
+// the function replaces all of them with a single \n.
+export function normalize_line_endings(input) {
+  return input.replace(/\r\n|\r/g, '\n');
+}
