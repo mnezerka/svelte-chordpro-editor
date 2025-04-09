@@ -62,7 +62,7 @@
     }
 
     :global(.jschordpro-song .header) {
-        margin-bottom: 15px;
+        margin-bottom: 30px;
     }
 
     :global(.jschordpro-song h1) {
