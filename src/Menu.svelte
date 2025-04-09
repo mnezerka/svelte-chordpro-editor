@@ -1,12 +1,14 @@
 <script>
     export let transpose_steps = 0;
     export let format = {};
+    export let view = {};
     export let on_new = () => {};
     export let on_open = () => {};
     export let on_save = () => {};
     export let on_save_as = () => {};
     export let on_transpose = () => {};
     export let on_format_toggle = () => {};
+    export let on_view_toggle = () => {};
 
     let top_item_id = null;
 
@@ -112,12 +114,19 @@
         </div>
 
         <div class="dropdown">
-            <button class="menu-top" on:click={() => { on_top_item_click("help");}}>Help</button>
-            <div class="menu-item-container" class:hidden={top_item_id !== 'help'}>
-                <a href="https://www.chordpro.org/chordpro/">ChordPro Format</a>
+            <button class="menu-top" on:click={() => { on_top_item_click("view");}}>View</button>
+            <div class="menu-item-container" class:hidden={top_item_id !== 'view'}>
+                <button on:click={() => {on_item_click(on_view_toggle, 'cheatsheet')}} >{format_menu_item('ChordPro Cheat Sheet', view.cheatsheet)}</button>
             </div>
         </div>
 
+        <div class="dropdown">
+            <button class="menu-top" on:click={() => { on_top_item_click("help");}}>Help</button>
+            <div class="menu-item-container" class:hidden={top_item_id !== 'help'}>
+                <a href="https://www.chordpro.org/chordpro/">ChordPro Format</a>
+                <a href="https://github.com/mnezerka/svelte-chordpro-editor">Github Repository</a>
+            </div>
+        </div>
 
     </div>
 </nav>

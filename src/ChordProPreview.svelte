@@ -77,6 +77,10 @@
         text-align: right;
     }
 
+    :global(.use-colors .jschordpro-song h1) {
+        color: #0065a2;
+    }
+
     :global(.jschordpro-song h2) {
         font-size: 18px;
         font-weight: normal;

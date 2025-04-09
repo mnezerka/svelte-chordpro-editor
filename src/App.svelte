@@ -1,6 +1,7 @@
 <script>
     import Navbar from "./Navbar.svelte"
     import ChordProPreview from "./ChordProPreview.svelte"
+    import ChordProCheatSheet from "./ChordProCheatSheet.svelte"
     import {get_file_handle, get_new_file_handle, read_file, write_file, normalize_line_endings} from "./utils.js"
     import {new_song} from "./templates.js"
 
@@ -10,15 +11,17 @@
 
     let file_handle;
 
-    //var timer;
-
     // this is chordpro source rendered in editor
     let source_editor = $state(song);
     let source_preview = $state(song);
     let transpose_steps = $state(0);
+    let show_cheatsheet = $state(false);
     let format = $state({
         title_right: false,
         use_colors: false
+    })
+    let view = $state({
+        cheatsheet: false,
     })
 
     function on_new() {
@@ -90,6 +93,14 @@
         }
     }
 
+    // toggle view bool attribute
+    function on_view_toggle(property) {
+        if (property in view) {
+            view[property] = !view[property]
+        }
+    }
+
+
 
     var timer
 
@@ -113,6 +124,7 @@
 <Navbar
     subtitle={file_handle && file_handle.name}
     format={format}
+    view={view}
     {transpose_steps}
     {on_open}
     {on_new}
@@ -120,6 +132,7 @@
     {on_save_as}
     {on_transpose}
     {on_format_toggle}
+    {on_view_toggle}
  />
 
 <main>
@@ -128,6 +141,9 @@
             bind:value={source_editor}
             class="no-print">
         ></textarea>
+        {#if view.cheatsheet}
+        <ChordProCheatSheet />
+        {/if}
     </div>
 
     <div class="preview">
