@@ -1,27 +1,7 @@
 <script>
     import jschordpro from 'js-chordpro';
 
-    let { source = ''} = $props()
-
-    const steps = [
-        {id: -6, text: '-6'},
-        {id: -5, text: '-5'},
-        {id: -4, text: '-4'},
-        {id: -3, text: '-3'},
-        {id: -2, text: '-2'},
-        {id: -1, text: '-1'},
-        {id: 0, text: 'no transposition'},
-        {id: 1, text: '+1'},
-        {id: 2, text: '+2'},
-        {id: 3, text: '+3'},
-        {id: 4, text: '+4'},
-        {id: 5, text: '+5'},
-        {id: 6, text: '+6'}
-    ];
-
-    let s = $state({
-        transposeStep: 0,
-    })
+    let { source = '', transpose_steps = 0, format = {}} = $props()
 
     // version of $derive for more complex expressions
     let rendered = $derived.by(() => {
@@ -33,8 +13,8 @@
         try {
             let doc = jschordpro.parse(source)
 
-            if (s.transposeStep != 0) {
-                jschordpro.transpose(doc, s.transposeStep)
+            if (transpose_steps != 0) {
+                jschordpro.transpose(doc, transpose_steps)
             }
 
             result.html = jschordpro.to_html(doc);
@@ -43,48 +23,42 @@
         }
 
         return result
-
     })
 
+    function get_class() {
+        let result = '';
+
+        if (format.title_right === true) {
+            result += 'meta-right '
+        } else {
+            result += 'meta-left ';
+        }
+
+        if (format.use_colors === true) {
+            result += 'use-colors ';
+        }
+
+        return result;
+    }
 
 </script>
 
 <div class="preview">
-
-    <div class="transpose no-print">
-        <form class="no-print" onsubmit={(e) => e.preventDefault()}>
-            <select bind:value={s.transposeStep} class="no-print">
-            {#each steps as step}
-            <option value={step.id}>{step.text}</option>
-            {/each}
-
-            </select>
-        </form>
-    </div>
-
     {#if rendered.err !== null}
         <div class="error">
             {rendered.err}
         </div>
     {/if}
 
+    <div class="{get_class()}">
     {@html rendered.html}
+    </div>
 </div>
 
 <style>
 
     .preview {
         position: relative;
-    }
-
-    .transpose {
-        position: absolute;
-        top: 4px;
-        right: 4px;
-    }
-
-    select {
-        padding: 2px;
     }
 
     :global(.jschordpro-song .header) {
@@ -96,6 +70,11 @@
         margin-top: 0px;
         font-weight: normal;
         margin-bottom: 10px;
+        text-align: --title-align;
+    }
+
+    :global(.meta-right .jschordpro-song h1), :global(.meta-right .jschordpro-song h2) {
+        text-align: right;
     }
 
     :global(.jschordpro-song h2) {
@@ -141,8 +120,13 @@
     }
 
     :global(.jschordpro-song .chord) {
-        font-weight: bold;
+        font-weight: 900;
         padding-top: 3px;
         padding-right: 5px; 
     }
+
+    :global(.use-colors .jschordpro-song .chord) {
+        color: #0065a2;
+    }
+
 </style>

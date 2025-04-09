@@ -14,7 +14,11 @@
     // this is chordpro source rendered in editor
     let source_editor = $state(song);
     let source_preview = $state(song);
-
+    let transpose_steps = $state(0);
+    let format = $state({
+        title_right: false,
+        use_colors: false
+    })
 
     function on_new() {
         source_editor = ""
@@ -74,6 +78,18 @@
         }
     }
 
+    function on_transpose(steps) {
+        transpose_steps = steps;
+    }
+
+    // toggle formatting bool attribute
+    function on_format_toggle(property) {
+        if (property in format) {
+            format[property] = !format[property]
+        }
+    }
+
+
     var timer
 
     function delayedData(time, data, fn) {
@@ -95,10 +111,14 @@
 
 <Navbar
     subtitle={file_handle && file_handle.name}
+    format={format}
+    {transpose_steps}
     {on_open}
     {on_new}
     {on_save}
     {on_save_as}
+    {on_transpose}
+    {on_format_toggle}
  />
 
 <main>
@@ -110,7 +130,7 @@
     </div>
 
     <div class="preview">
-        <ChordProPreview source={source_preview} />
+        <ChordProPreview source={source_preview} transpose_steps={transpose_steps} format={format} />
     </div>
 </main>
 
