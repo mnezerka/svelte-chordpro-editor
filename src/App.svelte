@@ -2,6 +2,7 @@
     import Navbar from "./Navbar.svelte"
     import ChordProPreview from "./ChordProPreview.svelte"
     import {get_file_handle, get_new_file_handle, read_file, write_file} from "./utils.js"
+    import {new_song} from "./templates.js"
 
     let { song = ''} = $props();
 
@@ -21,7 +22,7 @@
     })
 
     function on_new() {
-        source_editor = ""
+        source_editor = new_song
     }
 
     async function on_open() {
