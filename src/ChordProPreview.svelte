@@ -28,11 +28,7 @@
     function get_class() {
         let result = '';
 
-        if (format.title_right === true) {
-            result += 'meta-right '
-        } else {
-            result += 'meta-left ';
-        }
+        result += 'meta-' + format.title_align + ' ';
 
         if (format.use_colors === true) {
             result += 'use-colors ';
@@ -66,7 +62,7 @@
     }
 
     :global(.jschordpro-song h1) {
-        font-size: 24px;
+        font-size: 20px;
         margin-top: 0px;
         font-weight: bold;
         margin-bottom: 10px;
@@ -77,12 +73,16 @@
         text-align: right;
     }
 
+    :global(.meta-center .jschordpro-song h1), :global(.meta-center .jschordpro-song h2) {
+        text-align: center;
+    }
+
     :global(.use-colors .jschordpro-song h1) {
         color: #0065a2;
     }
 
     :global(.jschordpro-song h2) {
-        font-size: 18px;
+        font-size: 16px;
         font-weight: normal;
         margin-top: 0;
         margin-bottom: 10px;

@@ -8,6 +8,7 @@
     export let on_save_as = () => {};
     export let on_transpose = () => {};
     export let on_format_toggle = () => {};
+    export let on_format_set = () => {};
     export let on_view_toggle = () => {};
 
     let top_item_id = null;
@@ -24,9 +25,9 @@
         }
     }
 
-    function on_item_click(callback, param) {
+    function on_item_click(callback, param, param2) {
         top_item_id = null;
-        callback(param);
+        callback(param, param2);
     }
 
     function genericClickOutside(node) {
@@ -108,7 +109,10 @@
         <div class="dropdown">
             <button class="menu-top" on:click={() => { on_top_item_click("format");}}>Format</button>
             <div class="menu-item-container" class:hidden={top_item_id !== 'format'}>
-                <button on:click={() => {on_item_click(on_format_toggle, 'title_right')}} >{format_menu_item('Title Right', format.title_right == true)}</button>
+                <button on:click={() => {on_item_click(on_format_set, 'title_align', 'left')}} >{format_menu_item('Title Left', format.title_align == 'left')}</button>
+                <button on:click={() => {on_item_click(on_format_set, 'title_align', 'center')}} >{format_menu_item('Title Center', format.title_align == 'center')}</button>
+                <button on:click={() => {on_item_click(on_format_set, 'title_align', 'right')}} >{format_menu_item('Title Right', format.title_align == 'right')}</button>
+                <hr>
                 <button on:click={() => {on_item_click(on_format_toggle, 'use_colors')}} >{format_menu_item('Use Colors', format.use_colors)}</button>
             </div>
         </div>
@@ -160,6 +164,13 @@
         padding-top: 4px;
         padding-bottom: 4px;
         padding-right: 4px;
+    }
+
+    .menu-container .menu-item-container hr {
+        height: 1px;
+        display: block;
+        border: 0;
+        border-top: 1px solid #ddd;
     }
 
     .menu-container .menu-item-container a {

@@ -17,7 +17,7 @@
     let transpose_steps = $state(0);
     let show_cheatsheet = $state(false);
     let format = $state({
-        title_right: false,
+        title_align: 'left',
         use_colors: false
     })
     let view = $state({
@@ -93,6 +93,13 @@
         }
     }
 
+    // set formatting attribute
+    function on_format_set(property, value) {
+        if (property in format) {
+            format[property] = value
+        }
+    }
+
     // toggle view bool attribute
     function on_view_toggle(property) {
         if (property in view) {
@@ -132,6 +139,7 @@
     {on_save_as}
     {on_transpose}
     {on_format_toggle}
+    {on_format_set}
     {on_view_toggle}
  />
 
