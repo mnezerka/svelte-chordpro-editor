@@ -46,6 +46,14 @@
             result += 'hide-chords ';
         }
 
+        if (view.show_comments === false) {
+            result += 'hide-comments ';
+        }
+
+        if (view.show_tabs === false) {
+            result += 'hide-tabs ';
+        }
+
         return result;
     }
 
@@ -119,7 +127,6 @@
         border-collapse: collapse;
     }
 
-
     :global(.jschordpro-song td) {
         text-align: left;
         font-size: 14px;
@@ -151,6 +158,27 @@
 
     :global(.color-chords .jschordpro-song .chord) {
         color: #0065a2;
+    }
+
+    :global(.jschordpro-song .comment) {
+        font-style: italic;
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+
+    :global(.hide-comments .jschordpro-song .comment) {
+        display: none;
+    }
+
+    :global(.jschordpro-song .tab) {
+        white-space: pre-wrap;
+        font-family: monospace;
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+
+    :global(.hide-tabs .jschordpro-song .tab) {
+        display: none;
     }
 
 </style>

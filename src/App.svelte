@@ -26,7 +26,10 @@
     let view = $state({
         cheatsheet: false,
         show_artist: true,
-        show_chords: true
+        show_chords: true,
+        show_comments: true,
+        show_tabs: false,
+        editor_monospaced: false
     })
 
     function on_new() {
@@ -152,7 +155,7 @@
     <div class="editor no-print">
         <textarea
             bind:value={source_editor}
-            class="no-print">
+            class="no-print {view.editor_monospaced ? 'editor-monospaced' : ''}">
         ></textarea>
         {#if view.cheatsheet}
         <ChordProCheatSheet />
@@ -204,6 +207,10 @@
 
     textarea:focus {
         outline: none;
+    }
+
+    textarea.editor-monospaced {
+        font-family: monospace;
     }
 
     @media (min-width: 640px) {

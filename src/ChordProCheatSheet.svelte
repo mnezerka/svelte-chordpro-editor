@@ -47,7 +47,25 @@ Is [D]take my body [Am]home
 `}
 </pre>
 
+<p><b>Comments</b> could be added to provide additional information:</p>
+<pre>
+{`{comment: Some comment text}`}
 
+or
+
+{`{c: Some comment text}`}
+</pre>
+
+<p><b>Tabulatures</b> could be added. Tab sections will be formatted in monospace
+font to keep all alignments and postions:</p>
+<pre>
+{`{start_of_tab}
+--------2---3---4---3-----
+------1---1---1---0-3-----
+--------------------------
+--------------------------
+--------------------------
+`}
 
 </div>
 

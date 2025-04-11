@@ -125,6 +125,10 @@
                 <hr>
                 <button on:click={() => {on_item_click(on_view_toggle, 'show_artist')}} >{format_menu_item('Show Artist', view.show_artist)}</button>
                 <button on:click={() => {on_item_click(on_view_toggle, 'show_chords')}} >{format_menu_item('Show Chords', view.show_chords)}</button>
+                <button on:click={() => {on_item_click(on_view_toggle, 'show_comments')}} >{format_menu_item('Show Comments', view.show_comments)}</button>
+                <button on:click={() => {on_item_click(on_view_toggle, 'show_tabs')}} >{format_menu_item('Show Tabs', view.show_tabs)}</button>
+                <hr>
+                <button on:click={() => {on_item_click(on_view_toggle, 'editor_monospaced')}} >{format_menu_item('Monospaced Editor', view.editor_monospaced)}</button>
             </div>
         </div>
 
