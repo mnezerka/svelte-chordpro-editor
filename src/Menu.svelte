@@ -122,6 +122,9 @@
             <button class="menu-top" on:click={() => { on_top_item_click("view");}}>View</button>
             <div class="menu-item-container" class:hidden={top_item_id !== 'view'}>
                 <button on:click={() => {on_item_click(on_view_toggle, 'cheatsheet')}} >{format_menu_item('ChordPro Cheat Sheet', view.cheatsheet)}</button>
+                <hr>
+                <button on:click={() => {on_item_click(on_view_toggle, 'show_artist')}} >{format_menu_item('Show Artist', view.show_artist)}</button>
+                <button on:click={() => {on_item_click(on_view_toggle, 'show_chords')}} >{format_menu_item('Show Chords', view.show_chords)}</button>
             </div>
         </div>
 

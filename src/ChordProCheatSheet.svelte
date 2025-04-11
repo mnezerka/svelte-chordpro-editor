@@ -13,9 +13,9 @@
 {`{subtitle: Song subtitle}`}
 </pre>
 
-<p><b>Author</b> of the song:</p>
+<p><b>Artist</b> of the song:</p>
 <pre>
-{`{author: Bob Dylan}`}
+{`{artist: Bob Dylan}`}
 </pre>
 
 <p><b>Chorus</b> is text between <i>start</i> and <i>end</i> identifiers (no empty lines allowed). </p>

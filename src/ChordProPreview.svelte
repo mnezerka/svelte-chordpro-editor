@@ -1,7 +1,7 @@
 <script>
     import jschordpro from 'js-chordpro';
 
-    let { source = '', transpose_steps = 0, format = {}} = $props()
+    let { source = '', transpose_steps = 0, format = {}, view = {}} = $props()
 
     // version of $derive for more complex expressions
     let rendered = $derived.by(() => {
@@ -35,7 +35,15 @@
         }
 
         if (format.color_chords === true) {
-            result += 'color-chords';
+            result += 'color-chords ';
+        }
+
+        if (view.show_artist === false) {
+            result += 'hide-artist ';
+        }
+
+        if (view.show_chords === false) {
+            result += 'hide-chords ';
         }
 
         return result;
@@ -92,6 +100,10 @@
         margin-bottom: 10px;
     }
 
+    :global(.hide-artist .jschordpro-song .artist) {
+        display: none;
+    }
+
     .error {
         color: #ff0000;
         unicode-bidi: embed;
@@ -125,6 +137,10 @@
 
     :global(.jschordpro-song .line-chords) {
         height: 1em;
+    }
+
+    :global(.hide-chords .jschordpro-song .line-chords) {
+        display: none;
     }
 
     :global(.jschordpro-song .chord) {

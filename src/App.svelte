@@ -22,8 +22,11 @@
         color_title: false,
         color_chords: false
     })
+
     let view = $state({
         cheatsheet: false,
+        show_artist: true,
+        show_chords: true
     })
 
     function on_new() {
@@ -157,7 +160,7 @@
     </div>
 
     <div class="preview">
-        <ChordProPreview source={source_preview} transpose_steps={transpose_steps} format={format} />
+        <ChordProPreview source={source_preview} transpose_steps={transpose_steps} format={format} view={view} />
     </div>
 </main>
 
