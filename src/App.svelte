@@ -16,9 +16,11 @@
     let source_preview = $state(song);
     let transpose_steps = $state(0);
     let show_cheatsheet = $state(false);
+
     let format = $state({
         title_align: 'left',
-        use_colors: false
+        color_title: false,
+        color_chords: false
     })
     let view = $state({
         cheatsheet: false,

@@ -113,7 +113,8 @@
                 <button on:click={() => {on_item_click(on_format_set, 'title_align', 'center')}} >{format_menu_item('Title Center', format.title_align == 'center')}</button>
                 <button on:click={() => {on_item_click(on_format_set, 'title_align', 'right')}} >{format_menu_item('Title Right', format.title_align == 'right')}</button>
                 <hr>
-                <button on:click={() => {on_item_click(on_format_toggle, 'use_colors')}} >{format_menu_item('Use Colors', format.use_colors)}</button>
+                <button on:click={() => {on_item_click(on_format_toggle, 'color_title')}} >{format_menu_item('Color Title', format.color_title)}</button>
+                <button on:click={() => {on_item_click(on_format_toggle, 'color_chords')}} >{format_menu_item('Color Chords', format.color_chords)}</button>
             </div>
         </div>
 

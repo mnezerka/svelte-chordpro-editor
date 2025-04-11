@@ -30,8 +30,12 @@
 
         result += 'meta-' + format.title_align + ' ';
 
-        if (format.use_colors === true) {
-            result += 'use-colors ';
+        if (format.color_title === true) {
+            result += 'color-title ';
+        }
+
+        if (format.color_chords === true) {
+            result += 'color-chords';
         }
 
         return result;
@@ -77,7 +81,7 @@
         text-align: center;
     }
 
-    :global(.use-colors .jschordpro-song h1) {
+    :global(.color-title .jschordpro-song h1) {
         color: #0065a2;
     }
 
@@ -129,7 +133,7 @@
         padding-right: 5px; 
     }
 
-    :global(.use-colors .jschordpro-song .chord) {
+    :global(.color-chords .jschordpro-song .chord) {
         color: #0065a2;
     }
 
